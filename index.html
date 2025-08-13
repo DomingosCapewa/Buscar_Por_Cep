@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Técnicas de desenvolvimento</title>
+    <link rel="stylesheet" href="index.css" />
+    <!-- <script src="cep.js" defer></script> -->
+  </head>
+  <body>
+    <div class="formulario">
+      <h1>Busque pelo CEP</h1>
+      <form>
+        <label for="cep">CEP:</label>
+        <input
+          type="text"
+          id="cep"
+          name="cep"
+          required
+          placeholder="Preencha com o seu CEP"
+        />
+        <input type="button" value="Buscar" class="botao" onclick="buscar()" />
+      </form>
+      <div id="resultado">
+        <h3>Dados encontrados</h3>
+        <p>Logradouro:<script>document.writeln(json.logradouro)</script></p>
+        <p>Bairro:<script>json.bairro</script></p>
+        <p>Cidade:<script>json.cridade</script></p>
+      </div>
+    </div>
+
+    <script>
+      async function buscar() {
+        var cep = document.getElementById("cep").value;
+        var rua = document.getElementById("rua");
+
+        var url = `https://viacep.com.br/ws/${cep}/json/`;
+        
+        var resultado = await fetch(url);
+        var json = await resultado.json();
+        // alert("O seu CEP é " + cep);
+
+        // alert(json.logradouro+  ","+ json.bairro);
+
+        rua.value
+      
+      }
+    </script>
+  </body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<body>
+       
+cep: <input type="text" id="cep"/>
+<input type="button" value="Buscar" onclick="buscar()"/>
+<br><br>
+rua: <input type="text" id="rua"/>
+<script>
+   async function buscar(){
+       var cep = document.getElementById("cep").value;
+       var rua = document.getElementById("rua");
+       var url = `https://viacep.com.br/ws/${cep}/json/`
+       var resultado = await fetch(url);
+       var json      = await resultado.json();
+       rua.value = json.logradouro
+       
+   }
+</script>
+</body>
+</html> -->
