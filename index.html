@@ -23,27 +23,24 @@
       </form>
       <div id="resultado">
         <h3>Dados encontrados</h3>
-        <p>Logradouro:<script>document.writeln(json.logradouro)</script></p>
-        <p>Bairro:<script>json.bairro</script></p>
-        <p>Cidade:<script>json.cridade</script></p>
+        <p>Logradouro: <span id="logradouro"></span></p>
+        <p>Bairro: <span id="bairro"></span></p>
+        <p>Cidade: <span id="cidade"></span></p>
       </div>
     </div>
 
     <script>
       async function buscar() {
         var cep = document.getElementById("cep").value;
-        var rua = document.getElementById("rua");
 
         var url = `https://viacep.com.br/ws/${cep}/json/`;
         
         var resultado = await fetch(url);
         var json = await resultado.json();
-        // alert("O seu CEP é " + cep);
 
-        // alert(json.logradouro+  ","+ json.bairro);
-
-        rua.value
-      
+        document.getElementById("logradouro").textContent = json.logradouro || "";
+        document.getElementById("bairro").textContent = json.bairro || "";
+        document.getElementById("cidade").textContent = json.localidade || "";
       }
     </script>
   </body>
